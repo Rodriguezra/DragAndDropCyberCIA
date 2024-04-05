@@ -155,8 +155,8 @@ function preload() {
   integrityImg = loadImage('assets/CIA/1/Integrity.png');
   avabilityImg = loadImage('assets/CIA/1/Avability.png');
   CybercrimeImg = loadImage('assets/CyberLaws/1/Cybercrime.png');
-  winCompImg = loadImage('assets/CyberLaws/1/lockedComputer.png');
-  loseCompImg = loadImage('assets/CyberLaws/1/LoseComp.png');
+  winCompImg = loadImage('assets/CIA/1/lockedComputer.png');
+  loseCompImg = loadImage('assets/CIA/1/LoseComp.png');
 }
 
 function setup() {
@@ -186,12 +186,12 @@ function setup() {
   winComp = new Sprite(width / 2, 160 + 95);
   winComp.addImage(winCompImg);
   winComp.collider = 'k';
-  winCompImg.resize(200, 0);
+
 
   loseComp = new Sprite(width / 2, 160 + 95);
   loseComp.addImage(loseCompImg);
   loseComp.collider = 'k';
-  loseCompImg.resize(200, 0);
+
 
 
   confidentiality = new cards.Sprite((width / 2 - 145), height - (height / 3) + 175);
@@ -408,13 +408,19 @@ function showScreenWin() {
   fill(255, alphaValue);
   textSize(32);
   textAlign(CENTER, CENTER);
-  text("You Win!\n\nThanks for playing!", width / 2, height / 2 - 100);
+  text("You Win!\n\nThanks for playing!", width / 2, height / 2 - 200);
 
   //Animate alpha value for fading effect
   alphaValue += fadeSpeed;
   if (alphaValue > 255 || alphaValue < 0) {
     fadeSpeed *= -1; //Reverse the fade direction
   }
+
+  //display win image
+  let imgX = 650 / 2 - winComp.width / 2;
+  let imgY = height / 2 - winComp.height / 2 - 20;
+  image(winCompImg, imgX, imgY);
+
   //Restart button
   fill(255);
   rect(width / 2 - 50, height / 2 + 120, 100, 40, 10);
@@ -431,7 +437,7 @@ function showScreenLose() {
   fill(255, alphaValue);
   textSize(32);
   textAlign(CENTER, CENTER);
-  text("Not Quite!\n\nTry again?", width / 2, height / 2 - 100);
+  text("Not Quite!\n\nTry again?", width / 2, height / 2 - 230);
 
   //Animate alpha value for fading effect
   alphaValue += fadeSpeed;
@@ -439,7 +445,12 @@ function showScreenLose() {
     fadeSpeed *= -1; //Reverse the fade direction
   }
 
-  // Instructions button
+  //display lose image
+  let imgX = 650 / 2 - loseComp.width / 2;
+  let imgY = height / 2 - loseComp.height / 2 - 20;
+  image(loseCompImg, imgX, imgY);
+
+  //restart button
   fill(255);
   rect(width / 2 - 75, height / 2 + 120, 150, 40, 10);
   fill(0);
