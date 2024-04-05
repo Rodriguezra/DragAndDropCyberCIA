@@ -1,6 +1,6 @@
 let cards = [];
-let CIAbackground, confidentiality, integrity, avability, Cybercrime;
-let CIAbackgroundImg, confidentialityImg, integrityImg, avabilityImg, CybercrimeImg;
+let CIAbackground, confidentiality, integrity, avability, Cybercrime, winComp, loseComp;
+let CIAbackgroundImg, confidentialityImg, integrityImg, avabilityImg, CybercrimeImg, winCompImg, loseCompImg;
 let center1, center2, center3;
 let screen = 0;
 let widthConstraint, heightConstraint;
@@ -25,6 +25,17 @@ function setCardsoffScreen() {
   }
   else {
     Cybercrime.pos = { x: -100000, y: -200 };
+  }if (screen === 3) {
+    winComp.pos = { x: width / 2 + 10, y: 160 + 85 };
+  }
+  else {
+    winComp.pos = { x: -100000, y: -200 };
+  }
+  if (screen === 4) {
+    loseComp.pos = { x: width / 2, y: 160 + 85};
+  }
+  else {
+    loseComp.pos = { x: -100000, y: -200 };
   }
 }
 
@@ -144,6 +155,8 @@ function preload() {
   integrityImg = loadImage('assets/CIA/1/Integrity.png');
   avabilityImg = loadImage('assets/CIA/1/Avability.png');
   CybercrimeImg = loadImage('assets/CyberLaws/1/Cybercrime.png');
+  winCompImg = loadImage('assets/CyberLaws/1/lockedComputer.png');
+  loseCompImg = loadImage('assets/CyberLaws/1/LoseComp.png');
 }
 
 function setup() {
@@ -170,6 +183,17 @@ function setup() {
   Cybercrime.collider = 'k';
   CybercrimeImg.resize(200, 0);
 
+  winComp = new Sprite(width / 2, 160 + 95);
+  winComp.addImage(winCompImg);
+  winComp.collider = 'k';
+  winCompImg.resize(200, 0);
+
+  loseComp = new Sprite(width / 2, 160 + 95);
+  loseComp.addImage(loseCompImg);
+  loseComp.collider = 'k';
+  loseCompImg.resize(200, 0);
+
+
   confidentiality = new cards.Sprite((width / 2 - 145), height - (height / 3) + 175);
   confidentiality.addImage(confidentialityImg);
   confidentiality.scale = 0.6;
@@ -193,6 +217,8 @@ function setup() {
   avability.pos = { x: -100, y: -100 };
   CIAbackground.pos = { x: -200, y: -200 };
   Cybercrime.pos = { x: -400, y: -400 };
+  winComp.pos = { x: -400, y: -400 };
+  loseComp.pos = { x: -400, y: -400 };
 
   ////////////////////////////////////////////
   ////////////////// GAME 2 //////////////////
